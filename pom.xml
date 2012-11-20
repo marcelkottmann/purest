@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.pepe79</groupId>
+	<artifactId>purest</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>purest</name>
+	<url>http://maven.apache.org</url>
+
+	<build>
+		<finalName>purest</finalName>
+		<plugins>
+			<plugin>
+				<groupId>com.ppedregal.typescript</groupId>
+				<artifactId>typescript-maven-plugin</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>tsc</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>src/main/ts</sourceDirectory>
+							<targetDirectory>.</targetDirectory>
+							<libDTS>src/main/tsc/lib.d.ts</libDTS>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
