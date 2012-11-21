@@ -1,0 +1,56 @@
+<html>
+<body>
+	<script type="text/javascript" src="../../../purest.js"></script>
+	<script type="text/javascript">
+		var fileTree = [ {
+			name : "/",
+			type : "folder",
+			children : [ {
+				name : "home",
+				type : "folder",
+				children : [ {
+					name : "marci",
+					type : "folder",
+					children : [ {
+						name : "test.txt",
+						type : "file"
+					} ]
+				}, {
+					name : "mone",
+					type : "folder"
+				} ]
+			} ]
+		} ];
+
+		var directive = function(children) {
+			return {
+				'.path' : {
+					items : children,
+					each : function(child) {
+						return {
+							".path img@src" : child.type + ".png",
+							".path .name" : child.name,
+							".path .children" : {
+								include : ".tree",
+								directive : directive(child.children)
+							}
+						}
+					}
+				}
+			}
+		};
+	</script>
+
+
+	<ul class="tree">
+		<li class="path"><img src="file.png" align="top" /> <span
+			class="name">Filename</span>
+			<div class="children"></div></li>
+	</ul>
+
+	<a href="#"
+		onclick="PUREST.render('.tree', directive(fileTree));return false;">Render!</a>
+
+
+</body>
+</html>

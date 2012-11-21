@@ -1,3 +1,5 @@
+///<reference path='../../main/ts/purest.ts' />
+
 class Color {
     name: string;
 }
@@ -27,7 +29,7 @@ red.name = "red";
 
 var product = new Product();
 
-product.label = "Demo Testprodukt";
+product.label = "Demo Testproduct";
 product.description= "This product will make you happy. This product will make you happy. This product will make you happy. This product will make you happy.";
 product.variants = new ProductVariant[];
 
@@ -47,20 +49,29 @@ pv2.colors.push(yellow);
 product.variants.push(pv1);
 product.variants.push(pv2);
 
+var errorMessage = "This product has no variants.";
 
 var directive = {
     '.label': product.label,
+    '{date}': Date.now(),
     '.description': product.description,
-    'ul#outer li': {
-        items: product.getVariants(),
+    '.variants': {
+        items: product.variants,
+        alt: {
+            "h2":errorMessage,
+            "ul.outer":undefined
+        }
+    },
+    'ul.outer li': {
+        items: product.variants,
         each: (item: ProductVariant){
             return {
                 '.vLabel':item.label,
-                'ul#inner li': {
+                'ul.inner li': {
                     items: item.colors,
                     each: (color: Color){
                         return {
-                        'a':color.name,
+                        'a+':color.name.charAt(0).toLowerCase()==='r'?'**'+color.name+'**':color.name,
                         'a@href+':color.name
                         };
                     }
@@ -69,3 +80,4 @@ var directive = {
         }
     }
 }
+
