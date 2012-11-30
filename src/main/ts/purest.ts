@@ -80,7 +80,7 @@ module PUREST {
             for (var i = 0; i < items.length; i++) {
                 //clone template
                 var templateNode = <HTMLElement>element.cloneNode(true);
-                renderApply(templateNode, eachFunc(items[i]));
+                renderApply(templateNode, eachFunc(items[i], {index:i, length:items.length}));
                 ppar.appendChild(templateNode);
             }
         } else if (itemsEmpty && (typeof rule.alt === 'undefined')) {
