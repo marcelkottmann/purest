@@ -64,7 +64,10 @@ var PUREST;
             removeOthersToo(baseElement, selector.domSelector);
             for(var i = 0; i < items.length; i++) {
                 var templateNode = element.cloneNode(true);
-                renderApply(templateNode, eachFunc(items[i]));
+                renderApply(templateNode, eachFunc(items[i], {
+                    index: i,
+                    length: items.length
+                }));
                 ppar.appendChild(templateNode);
             }
         } else {
