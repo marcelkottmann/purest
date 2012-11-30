@@ -71,8 +71,8 @@ var directive = {
                     items: item.colors,
                     each: (color: Color){
                         return {
-                        'a+':color.name.charAt(0).toLowerCase()==='r'?'**'+color.name+'**':color.name,
-                        'a@href+':color.name
+                        'a':color.name.charAt(0).toLowerCase()==='r'?'**'+color.name+'**':color.name,
+                        'a@href':"http:google.com?q="+color.name
                         };
                     }
                 }

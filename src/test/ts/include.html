@@ -1,0 +1,26 @@
+<html>
+<body>
+	<script type="text/javascript" src="../../../purest.js"></script>
+	<script type="text/javascript">
+		var directive = {
+				"div" : {
+					include : ".include",
+					directive : {
+						"div" : "test"
+					}
+				}
+		};
+	</script>
+
+	<div class="template">
+		<div></div>
+	</div>
+
+	<div class="include">
+		<div>Include-Template</div>
+	</div>
+
+	<a href="#" onclick="PUREST.render('.template', directive);">Render!</a>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+<body>
+	<script type="text/javascript" src="../../../purest.js"></script>
+	<script type="text/javascript">
+		var elements = [ "Hello", "this", "is", "a", "test."];
+		
+		var directive = function(elements) {
+			return {
+				'li' : {
+					items : elements,
+					each : function(element) {
+						return {
+							"a" : element,
+							"a@href+" : element
+						}
+					}
+				}
+			}
+		};
+	</script>
+
+	<ul class="list">
+		<li><a href="http://www.google.de?q="></a></li> 
+	</ul>
+
+	<a href="#"
+		onclick="PUREST.render('.list', directive(elements));">Render!</a>
+
+</body>
+</html>

@@ -64,7 +64,10 @@ var PUREST;
             removeOthersToo(baseElement, selector.domSelector);
             for(var i = 0; i < items.length; i++) {
                 var templateNode = element.cloneNode(true);
-                renderApply(templateNode, eachFunc(items[i]));
+                renderApply(templateNode, eachFunc(items[i], {
+                    index: i,
+                    length: items.length
+                }));
                 ppar.appendChild(templateNode);
             }
         } else {
@@ -231,8 +234,8 @@ var directive = {
                     items: item.colors,
                     each: function (color) {
                         return {
-                            'a+': color.name.charAt(0).toLowerCase() === 'r' ? '**' + color.name + '**' : color.name,
-                            'a@href+': color.name
+                            'a': color.name.charAt(0).toLowerCase() === 'r' ? '**' + color.name + '**' : color.name,
+                            'a@href': "http:google.com?q=" + color.name
                         };
                     }
                 }

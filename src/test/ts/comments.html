@@ -1,0 +1,33 @@
+<html>
+<body>
+	<script type="text/javascript" src="../../../purest.js"></script>
+	<script type="text/javascript">
+		var comments = [ "Hello", "this", "is", "a", "test."];
+		
+		var directive = function(comments) {
+			return {
+				'li' : {
+					items : comments,
+					each : function(comment, context) {
+						return {
+							".i" : function(i){switch(i){case 1:return "1st"; case 2: return "2nd"; case 3: return "3rd"; default: return i+"th"}}(++context.index), 
+							".n" : context.length,
+							".comment" : comment
+						}
+					}
+				}
+			}
+		};
+	</script>
+
+
+	<ul class="comments">
+		<li>This is the <span class="i"></span> comment of total <span class="n"></span> comments: <span class="comment"></span></li> 
+	</ul>
+
+	<a href="#"
+		onclick="PUREST.render('.comments', directive(comments));">Render!</a>
+
+
+</body>
+</html>
